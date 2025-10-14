@@ -403,7 +403,7 @@ const handleSubmit = (e) => {
       </Box>
 
       {/* ===== PAKET WEBSITE ===== */}
-<Box sx={{ py: 10, px: { xs: 3, md: 10 }, textAlign: "center" }}>
+<Box id="paket-website" sx={{ py: 10, px: { xs: 3, md: 10 }, textAlign: "center" }}>
       <Typography variant="h4" sx={{ fontWeight: 700, color: "#31927b" }}>
         Paket Website{" "}
         <span
@@ -622,7 +622,7 @@ const handleSubmit = (e) => {
 
   {!loading && !result && (
     <DialogActions sx={{ justifyContent: "center", pb: 3 }}>
-      <Button type="submit" onClick={handleSubmit} variant="contained" sx={{ bgcolor: "#fcb81c", color: "white", fontWeight: 700, px: 4, py: 1.2, borderRadius: "10px", "&:hover": { bgcolor: "#ffcf4d" } }}>
+      <Button type="submit" onClick={handleSubmit} variant="contained" sx={{ bgcolor: "#267864", color: "white", fontWeight: 700, px: 4, py: 1.2, borderRadius: "10px" }}>
         Lakukan Pengajuan
       </Button>
     </DialogActions>
@@ -633,6 +633,7 @@ const handleSubmit = (e) => {
 
       {/* ===== TESTIMONI ===== */}
       <Box
+      id="testimoni"
         sx={{
           bgcolor: "#f7f7f7",
           py: 10,
@@ -802,70 +803,6 @@ const handleSubmit = (e) => {
         <WhatsAppIcon sx={{ fontSize: 32 }} />
       </IconButton>
     </Box>
-
-        {/* Kolom 4: Newsletter */}
-        {/* <Grid item xs={12} md={2}>
-      <Typography variant="h6" sx={{ fontWeight: 700, color: "#31927b", mb: 2 }}>
-        Langganan Info
-      </Typography>
-      <Typography sx={{ mb: 2 }}>
-        Dapatkan tips, promo, dan update seputar dunia website langsung ke email Anda.
-      </Typography>
-     <Box
-      component="form"
-      onSubmit={onSubmit}
-      sx={{ display: "flex", flexDirection: "column", gap: 2, maxWidth: 400 }}
-    >
-      <Typography variant="h6" sx={{ color: "#31927b", fontWeight: 700 }}>
-        Langganan Info via WhatsApp
-      </Typography>
-
-      <TextField
-        label="Email Anda"
-        name="message"
-        type="email"
-        value={message}
-        onChange={onChange}
-        size="small"
-        variant="outlined"
-        placeholder="Masukkan email Anda"
-        error={!!error}
-        helperText={error}
-        sx={{ "& .MuiOutlinedInput-root": { fontSize: "0.9rem" } }}
-      />
-
-      <Button
-        type="submit"
-        variant="contained"
-        disabled={loading}
-        sx={{
-          bgcolor: "#31927b",
-          color: "#fff",
-          fontWeight: 600,
-          "&:hover": { bgcolor: "#277464" },
-        }}
-      >
-        {loading ? <CircularProgress size={24} sx={{ color: "#fff" }} /> : "Langganan"}
-      </Button>
-
-      {result === "success" && (
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 2 }}>
-          <CheckCircleOutlineOutlined sx={{ color: "#31927b", fontSize: 28 }} />
-          <Typography sx={{ color: "#31927b", fontWeight: 600 }}>
-            Berhasil! Email dikirim via WhatsApp
-          </Typography>
-        </Box>
-      )}
-
-      {result === "error" && (
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 2 }}>
-          <CancelOutlined sx={{ color: "#fcb81c", fontSize: 28 }} />
-          <Typography sx={{ color: "#fcb81c", fontWeight: 600 }}>Gagal mengirim pesan!</Typography>
-        </Box>
-      )}
-    </Box>
-    </Grid> */}
-
       </Grid>
 
       {/* Garis Pembatas */}

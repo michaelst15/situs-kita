@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./page/AppBar";
+import Portofolio from "./page/portofolio";
 import Home from "./page/home"
 
 // import Layanan from "./pages/Layanan";
@@ -19,6 +20,7 @@ function App() {
       <div style={{ marginTop: "80px", padding: "20px" }}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/portofolio" element={<Portofolio />} />
           {/* <Route path="/layanan" element={<Layanan />} />
           <Route path="/portofolio" element={<Portofolio />} />
           <Route path="/harga" element={<Harga />} />
