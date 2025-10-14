@@ -25,6 +25,10 @@ import testimoni2 from "../image/testimoni2.jpeg";
 import testimoni3 from "../image/testimoni3.jpg";
 import CheckIcon from "@mui/icons-material/Check";
 import emailjs from "emailjs-com";
+import foto1 from "../image/foto1.webp";
+import foto2 from "../image/foto2.png";
+import foto3 from "../image/foto3.png";
+import foto4 from "../image/foto4.png";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import "@fontsource/montserrat";
 import "@fontsource/niconne"; 
@@ -41,6 +45,29 @@ const [errors, setErrors] = useState({
   hp: "",
   email: ""
 });
+
+const fiturList = [
+    {
+      title: "Desain Menarik",
+      desc: "Tampilan yang elegan dan profesional untuk menarik perhatian pengunjung.",
+      img: foto1,
+    },
+    {
+      title: "Harga Terjangkau",
+      desc: "Nikmati layanan premium dengan biaya yang sesuai anggaran bisnis Anda.",
+      img: foto2,
+    },
+    {
+      title: "Cepat & Responsif",
+      desc: "Website cepat diakses dan tampilan menyesuaikan semua perangkat.",
+      img: foto3,
+    },
+    {
+      title: "Support Penuh",
+      desc: "Kami siap membantu dari pembuatan hingga pemeliharaan situs Anda.",
+      img: foto4,
+    },
+  ];
 
 
   const [formDataLangganan, setFormDataLangganan] = useState({
@@ -293,111 +320,108 @@ const handleSubmit = (e) => {
           ?
         </Typography>
 
- <Grid
-  container
-  spacing={4}
-  sx={{
-    mt: 6,
-    justifyContent: "center",
-  }}
->
-  {[
-    {
-      title: "Desain Menarik",
-      desc: "Tampilan yang elegan dan profesional untuk menarik perhatian pengunjung.",
-    },
-    {
-      title: "Harga Terjangkau",
-      desc: "Nikmati layanan premium dengan biaya yang sesuai anggaran bisnis Anda.",
-    },
-    {
-      title: "Cepat & Responsif",
-      desc: "Website cepat diakses dan tampilan menyesuaikan semua perangkat.",
-    },
-    {
-      title: "Support Penuh",
-      desc: "Kami siap membantu dari pembuatan hingga pemeliharaan situs Anda.",
-    },
-  ].map((item, i) => (
-    <Grid
-      item
-      xs={12}
-      sm={6}
-      md={6}
-      key={i}
+<Grid
+      container
+      spacing={4}
       sx={{
-        display: "flex",
+        mt: 6,
         justifyContent: "center",
-        mt: {
-          xs: i > 0 ? 3 : 0, // mobile
-          md: i >= 2 ? 6 : 0, // desktop
-        },
       }}
     >
-      <Card
-        sx={{
-          position: "relative",
-          width: "100%",
-          maxWidth: 380,
-          height: "100%",
-          borderRadius: "16px",
-          p: 3,
-          overflow: "hidden",
-          textAlign: "center",
-          boxShadow: "0 4px 15px rgba(0,0,0,0.15)",
-          transition: "transform 0.3s ease, box-shadow 0.3s ease",
-          "&:hover": {
-            transform: "translateY(-5px)",
-            boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
-          },
-          // Background dengan animasi seperti air
-          background: `
-            linear-gradient(130deg, #31927b 25%, #2a7d69 50%, #31927b 75%)
-          `,
-          backgroundSize: "200% 200%",
-          animation: "waveMove 5s ease-in-out infinite",
-          color: "#fff",
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 60%)",
-            animation: "waveShine 6s infinite alternate",
-            zIndex: 0,
-          },
-        }}
-      >
-        <CardContent sx={{ position: "relative", zIndex: 1 }}>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, color: "#fcb81c", mb: 1 }}
+      {fiturList.map((item, i) => (
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={6}
+          key={i}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mt: {
+              xs: i > 0 ? 3 : 0,
+              md: i >= 2 ? 6 : 0,
+            },
+          }}
+        >
+          <Card
+            sx={{
+              position: "relative",
+              width: "100%",
+              maxWidth: 380,
+              height: "100%",
+              borderRadius: "16px",
+              p: 3,
+              overflow: "hidden",
+              textAlign: "center",
+              boxShadow: "0 4px 15px rgba(0,0,0,0.15)",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              "&:hover": {
+                transform: "translateY(-5px)",
+                boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
+              },
+              background: `
+                linear-gradient(130deg, #31927b 25%, #2a7d69 50%, #31927b 75%)
+              `,
+              backgroundSize: "200% 200%",
+              animation: "waveMove 5s ease-in-out infinite",
+              color: "#fff",
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                inset: 0,
+                background:
+                  "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 60%)",
+                animation: "waveShine 6s infinite alternate",
+                zIndex: 0,
+              },
+            }}
           >
-            {item.title}
-          </Typography>
-          <Typography sx={{ color: "#fff", opacity: 0.9 }}>
-            {item.desc}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Grid>
-  ))}
+            <CardContent sx={{ position: "relative", zIndex: 1 }}>
+              {/* ✅ Gambar unik di atas judul */}
+              <Box
+                component="img"
+                src={item.img}
+                alt={item.title}
+                sx={{
+                  width: "100%",
+                  height: 180,
+                  objectFit: "cover",
+                  mb: 2,
+                  borderRadius: "10px",
+                  // boxShadow: "0 3px 10px rgba(0,0,0,0.2)",
+                }}
+              />
 
-  {/* Keyframes animasi */}
-  <style>
-    {`
-      @keyframes waveMove {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-      @keyframes waveShine {
-        0% { opacity: 0.4; transform: scale(1); }
-        100% { opacity: 0.7; transform: scale(1.05); }
-      }
-    `}
-  </style>
-</Grid>
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: 700, color: "#fcb81c", mb: 1 }}
+              >
+                {item.title}
+              </Typography>
+              <Typography sx={{ color: "#fff", opacity: 0.9 }}>
+                {item.desc}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      ))}
+
+      {/* Animasi background */}
+      <style>
+        {`
+          @keyframes waveMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          @keyframes waveShine {
+            0% { opacity: 0.4; transform: scale(1); }
+            100% { opacity: 0.7; transform: scale(1.05); }
+          }
+        `}
+      </style>
+    </Grid>
 
 
       </Box>
