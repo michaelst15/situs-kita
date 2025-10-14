@@ -21,8 +21,11 @@ import UseWhatsapp from "whatsapp-react-component";
 import { CheckCircleOutlineOutlined } from "@mui/icons-material";
 import { CancelOutlined } from "@mui/icons-material";
 import testimoni1 from "../image/testimoni1.jpg";
-import testimoni2 from "../image/testimoni2.jpeg";
+import testimoni2 from "../image/testimoni2.jpg";
 import testimoni3 from "../image/testimoni3.jpg";
+import testimoni4 from "../image/testimoni4.jpg";
+import testimoni5 from "../image/testimoni5.jpg";
+import testimoni6 from "../image/customer6.jpg";
 import CheckIcon from "@mui/icons-material/Check";
 import emailjs from "emailjs-com";
 import foto1 from "../image/foto1.webp";
@@ -32,6 +35,13 @@ import foto4 from "../image/foto4.png";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import "@fontsource/montserrat";
 import "@fontsource/niconne"; 
+
+ export const handleClick = (me) => {
+  const whatsappNumber = "+6281325565530"; // format internasional
+  const message = "Halo, saya ingin Konsultasi tentang website Anda."; // pesan otomatis
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank"); // buka WhatsApp Web / App
+  };
 
 export default function Home() {
 
@@ -81,13 +91,6 @@ const onChange = (e) => {
   setFormDataLangganan({ ...formDataLangganan, [name]: value });
 };
 
-const whatsappNumber = "+6281325565530"; // format internasional
-  const message = "Halo, saya ingin berlangganan info tentang website Anda."; // pesan otomatis
-
-  const handleClick = () => {
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank"); // buka WhatsApp Web / App
-  };
 
 const onSubmit = (e) => {
   e.preventDefault();
@@ -202,6 +205,24 @@ const handleSubmit = (e) => {
       text: "SitusKita bikin website usaha saya lebih dipercaya pelanggan!",
       img: testimoni3,
     },
+    {
+      name: "Melisa Handayani",
+      role: "Event Organizer",
+      text: "Dari awal konsultasi sampai website jadi, semuanya lancar. Desainnya sesuai keinginan saya, dan performanya ringan banget. Penjualan meningkat setelah pakai website ini!",
+      img: testimoni4,
+    },
+    {
+      name: "Fauzan Hakim",
+      role: "Freelancer Designer",
+      text: "Website portofolio saya jadi terlihat profesional. Banyak klien baru yang datang setelah saya tampilkan di media sosial. Sangat direkomendasikan!",
+      img: testimoni5,
+    },
+    {
+      name: "Lisa Hartono",
+      role: "Marketing Manager",
+      text: "Desain websitenya elegan, sesuai brand image kami. Mereka juga bantu optimasi SEO, jadi website kami mudah ditemukan di Google.",
+      img: testimoni6,
+    },
   ];
 
 
@@ -251,6 +272,7 @@ const handleSubmit = (e) => {
           modern, dan menarik perhatian.
         </Typography>
         <Button
+          onClick={handleClick}
           variant="contained"
           sx={{
             bgcolor: "#fcb81c",
@@ -298,133 +320,121 @@ const handleSubmit = (e) => {
       </Box>
 
       {/* ===== MENGAPA MEMILIH SITUSKITA ===== */}
-      <Box
-        sx={{
-          bgcolor: "#f7f7f7",
-          py: 10,
-          px: { xs: 3, md: 10 },
-          textAlign: "center",
-        }}
-      >
-        <Typography variant="h4" sx={{ fontWeight: 700, color: "#31927b" }}>
-          Mengapa Memilih{" "}
-          <span
-            style={{
-              color: "#fcb81c",
-              fontFamily: "'Niconne', cursive",
-              fontSize: "1.4em",
-            }}
-          >
-            SitusKita
-          </span>
-          ?
-        </Typography>
-
-<Grid
-      container
-      spacing={4}
-      sx={{
-        mt: 6,
-        justifyContent: "center",
+<Box
+  sx={{
+    bgcolor: "#f7f7f7",
+    py: 10,
+    px: { xs: 3, md: 10 },
+    textAlign: "center",
+  }}
+>
+  <Typography variant="h4" sx={{ fontWeight: 700, color: "#31927b" }}>
+    Mengapa Memilih{" "}
+    <span
+      style={{
+        color: "#fcb81c",
+        fontFamily: "'Niconne', cursive",
+        fontSize: "1.4em",
       }}
     >
-      {fiturList.map((item, i) => (
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          md={6}
-          key={i}
+      SitusKita
+    </span>
+    ?
+  </Typography>
+
+  <Grid
+    container
+    spacing={3}
+    sx={{
+      mt: 4,
+      justifyContent: "center",
+    }}
+  >
+    {fiturList.map((item, i) => (
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={4}
+        key={i}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          mt: {
+            xs: i > 0 ? 2 : 0,
+            md: i >= 3 ? 3 : 0,
+          },
+        }}
+      >
+        <Card
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            mt: {
-              xs: i > 0 ? 3 : 0,
-              md: i >= 2 ? 6 : 0,
+            position: "relative",
+            width: "100%",
+            maxWidth: 300,
+            height: 360, // ✅ tinggi tetap agar gambar bisa proporsional penuh
+            borderRadius: "12px",
+            overflow: "hidden",
+            textAlign: "center",
+            boxShadow: "0 3px 10px rgba(0,0,0,0.1)",
+            transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            "&:hover": {
+              transform: "translateY(-4px)",
+              boxShadow: "0 5px 15px rgba(0,0,0,0.15)",
             },
+            background: "white",
+            color: "#333",
           }}
         >
-          <Card
+          {/* Gambar memenuhi seluruh area bagian atas kartu */}
+          <Box
+            component="img"
+            src={item.img}
+            alt={item.title}
             sx={{
-              position: "relative",
               width: "100%",
-              maxWidth: 380,
-              height: "100%",
-              borderRadius: "16px",
-              p: 3,
-              overflow: "hidden",
-              textAlign: "center",
-              boxShadow: "0 4px 15px rgba(0,0,0,0.15)",
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              height: "200px", // ✅ tinggi tetap agar semua seragam
+              objectFit: "cover", // isi penuh tanpa distorsi
+              borderRadius: "10px",
+              mb: 2,
+              display: "block",
+              transition: "transform 0.3s ease",
               "&:hover": {
-                transform: "translateY(-5px)",
-                boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
-              },
-              background: `
-                linear-gradient(130deg, #31927b 25%, #2a7d69 50%, #31927b 75%)
-              `,
-              backgroundSize: "200% 200%",
-              animation: "waveMove 5s ease-in-out infinite",
-              color: "#fff",
-              "&::before": {
-                content: '""',
-                position: "absolute",
-                inset: 0,
-                background:
-                  "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 60%)",
-                animation: "waveShine 6s infinite alternate",
-                zIndex: 0,
+                transform: "scale(1.03)",
               },
             }}
-          >
-            <CardContent sx={{ position: "relative", zIndex: 1 }}>
-              {/* ✅ Gambar unik di atas judul */}
-              <Box
-                component="img"
-                src={item.img}
-                alt={item.title}
-                sx={{
-                  width: "100%",
-                  height: 180,
-                  objectFit: "cover",
-                  mb: 2,
-                  borderRadius: "10px",
-                  // boxShadow: "0 3px 10px rgba(0,0,0,0.2)",
-                }}
-              />
+          />
 
-              <Typography
-                variant="h6"
-                sx={{ fontWeight: 700, color: "#fcb81c", mb: 1 }}
-              >
-                {item.title}
-              </Typography>
-              <Typography sx={{ color: "#fff", opacity: 0.9 }}>
-                {item.desc}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-      ))}
+          <CardContent sx={{ p: 0 }}>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontWeight: 700,
+                color: "#31927b",
+                mb: 0.5,
+                fontSize: "1rem",
+              }}
+            >
+              {item.title}
+            </Typography>
 
-      {/* Animasi background */}
-      <style>
-        {`
-          @keyframes waveMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-          }
-          @keyframes waveShine {
-            0% { opacity: 0.4; transform: scale(1); }
-            100% { opacity: 0.7; transform: scale(1.05); }
-          }
-        `}
-      </style>
-    </Grid>
+            <Typography
+              sx={{
+                color: "gray",
+                opacity: 0.9,
+                fontSize: "0.85rem",
+                lineHeight: 1.4,
+                px: 1.5,
+              }}
+            >
+              {item.desc}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
+    ))}
+  </Grid>
+</Box>
 
-
-      </Box>
 
       {/* ===== PAKET WEBSITE ===== */}
 <Box id="paket-website" sx={{ py: 10, px: { xs: 3, md: 10 }, textAlign: "center" }}>
@@ -656,74 +666,94 @@ const handleSubmit = (e) => {
     </Box>
 
       {/* ===== TESTIMONI ===== */}
-      <Box
-      id="testimoni"
+     <Box
+  id="testimoni"
+  sx={{
+    bgcolor: "#f7f7f7",
+    py: 10,
+    px: { xs: 3, md: 10 },
+    textAlign: "center",
+  }}
+>
+  <Typography variant="h4" sx={{ fontWeight: 700, color: "#31927b" }}>
+    Testimoni Pelanggan
+  </Typography>
+
+  <Grid
+    container
+    spacing={4}
+    sx={{
+      mt: 5,
+      justifyContent: "center",
+    }}
+  >
+    {testimonials.slice(0, 6).map((t, i) => (
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={4}
+        key={i}
         sx={{
-          bgcolor: "#f7f7f7",
-          py: 10,
-          px: { xs: 3, md: 10 },
-          textAlign: "center",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: 700, color: "#31927b" }}>
-          Testimoni Pelanggan
-        </Typography>
-
-        <Grid container spacing={4} sx={{ mt: 5, justifyContent: "center" }}>
-      {testimonials.map((t, i) => (
-        <Grid item xs={12} sm={6} md={4} key={i}>
-          <Card
+        <Card
+          sx={{
+            borderRadius: "20px",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+            p: 3,
+            width: "100%",
+            maxWidth: 330,
+            textAlign: "center",
+            transition: "transform 0.2s ease, box-shadow 0.2s ease",
+            "&:hover": {
+              transform: "translateY(-5px)",
+              boxShadow: "0 6px 16px rgba(0,0,0,0.15)",
+            },
+          }}
+        >
+          <Avatar
+            src={t.img}
+            alt={t.name}
             sx={{
-              borderRadius: "20px",
-              boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-              p: 3,
-              textAlign: "center",
-              transition: "transform 0.2s ease, box-shadow 0.2s ease",
-              "&:hover": {
-                transform: "translateY(-5px)",
-                boxShadow: "0 6px 16px rgba(0,0,0,0.15)",
-              },
+              width: 80,
+              height: 80,
+              mx: "auto",
+              mb: 2,
+              border: "3px solid #31927b",
+            }}
+          />
+          <Typography
+            sx={{
+              fontStyle: "italic",
+              mb: 2,
+              color: "#333",
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
             }}
           >
-            <Avatar
-              src={t.img}
-              alt={t.name}
-              sx={{
-                width: 80,
-                height: 80,
-                mx: "auto",
-                mb: 2,
-                border: "3px solid #31927b",
-              }}
-            />
-            <Typography
-              sx={{
-                fontStyle: "italic",
-                mb: 2,
-                color: "#333",
-                fontSize: "0.95rem",
-                lineHeight: 1.6,
-              }}
-            >
-              "{t.text}"
-            </Typography>
-            <Typography
-              sx={{
-                fontWeight: 700,
-                color: "#31927b",
-                fontSize: "1.05rem",
-              }}
-            >
-              {t.name}
-            </Typography>
-            <Typography sx={{ color: "#777", fontSize: "0.9rem" }}>
-              {t.role}
-            </Typography>
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
-      </Box>
+            "{t.text}"
+          </Typography>
+          <Typography
+            sx={{
+              fontWeight: 700,
+              color: "#31927b",
+              fontSize: "1.05rem",
+            }}
+          >
+            {t.name}
+          </Typography>
+          <Typography sx={{ color: "#777", fontSize: "0.9rem" }}>
+            {t.role}
+          </Typography>
+        </Card>
+      </Grid>
+    ))}
+  </Grid>
+</Box>
+
 
       {/* ===== FOOTER ===== */}
       <Box

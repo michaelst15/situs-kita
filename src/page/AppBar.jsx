@@ -20,6 +20,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import logo from "../image/logo.png";
+import { handleClick } from "./home";
 import { useNavigate } from "react-router-dom";
 import "@fontsource/montserrat";
 
@@ -188,6 +189,7 @@ const handleScroll = (item) => {
 
         <ListItem disablePadding>
           <ListItemButton
+            onClick={handleClick}
             sx={{
               justifyContent: "center",
               bgcolor: "#FF7A00",
