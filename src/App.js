@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./page/AppBar";
+import Home from "./page/home"
+
+// import Layanan from "./pages/Layanan";
+// import Portofolio from "./pages/Portofolio";
+// import Harga from "./pages/Harga";
+// import Testimoni from "./pages/Testimoni";
+// import Konsultasi from "./pages/Konsultasi";
+
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {/* AppBar tetap tampil di setiap halaman */}
+      <Header />
+      <div style={{ marginTop: "80px", padding: "20px" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/layanan" element={<Layanan />} />
+          <Route path="/portofolio" element={<Portofolio />} />
+          <Route path="/harga" element={<Harga />} />
+          <Route path="/testimoni" element={<Testimoni />} />
+          <Route path="/konsultasi" element={<Konsultasi />} />  */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
