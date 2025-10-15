@@ -73,12 +73,12 @@ const portofolioCategories = [
 export default function Portofolio() {
   return (
     <>
-    <Box id="portofolio" sx={{ bgcolor: "#f9fafb", mt: -10 }}>
+    <Box id="Website situskita" sx={{ bgcolor: "#f9fafb", mt: -10 }}>
       <Container>
         {/* Judul Halaman Utama */}
         <Box sx={{ py: 10, textAlign: "center" }}>
           <Typography variant="h4" sx={{ fontWeight: 700, color: "#31927b" }}>
-            Portofolio{" "}
+            Website{" "}
             <span
               style={{
                 color: "#fcb81c",
