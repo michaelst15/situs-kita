@@ -293,6 +293,7 @@ const handleScroll = (item) => {
                 </Button>
               ))}
             <Button
+              onClick={handleClick}
               variant="contained"
               sx={{
                 bgcolor: "#FF7A00",
