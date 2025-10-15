@@ -29,7 +29,7 @@ import testimoni6 from "../image/customer6.jpg";
 import CheckIcon from "@mui/icons-material/Check";
 import emailjs from "emailjs-com";
 import foto1 from "../image/foto1.webp";
-import foto2 from "../image/foto2.png";
+import foto2 from "../image/foto2.jpg";
 import foto3 from "../image/foto3.png";
 import foto4 from "../image/foto4.png";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
