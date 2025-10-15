@@ -10,6 +10,7 @@ import {
   IconButton,
   Rating,
 } from "@mui/material";
+import { handleClick } from "./home";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import logo from "../image/logo.png";
 import Compro1 from "../image/compro1.png";
@@ -71,6 +72,7 @@ const portofolioCategories = [
 
 // ========================= KOMPONEN UTAMA =========================
 export default function Portofolio() {
+  
   return (
     <>
     <Box id="Website situskita" sx={{ bgcolor: "#f9fafb", mt: -10 }}>
@@ -320,20 +322,35 @@ export default function Portofolio() {
         zIndex: 9999,
       }}
     >
-      <IconButton
-        id="whatsapp-btn"
+      <Box
         sx={{
-          bgcolor: "#25D366",
-          "&:hover": { bgcolor: "#1ebe5d" },
-          color: "#fff",
+          position: "relative",
           width: 60,
           height: 60,
-          borderRadius: "50%",
-          boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
         }}
       >
-        <WhatsAppIcon sx={{ fontSize: 32 }} />
-      </IconButton>
+        {/* Efek radar */}
+        <span className="pulse-ring"></span>
+
+        <IconButton
+          id="whatsapp-btn"
+          onClick={handleClick}
+          sx={{
+            bgcolor: "#25D366",
+            "&:hover": { bgcolor: "#1ebe5d" },
+            color: "#fff",
+            width: 60,
+            height: 60,
+            borderRadius: "50%",
+            boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+            position: "absolute",
+            top: 0,
+            left: 0,
+          }}
+        >
+          <WhatsAppIcon sx={{ fontSize: 32 }} />
+        </IconButton>
+      </Box>
     </Box>
       </Grid>
 

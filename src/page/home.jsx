@@ -58,30 +58,9 @@ const [errors, setErrors] = useState({
 
 const whatsappRef = useRef(null);
 
-const triggerRadar = () => {
-    const btn = whatsappRef.current;
-    if (!btn) return;
-
-    // buat elemen radar
-    const ring = document.createElement("span");
-    ring.classList.add("pulse-ring-once");
-    btn.appendChild(ring);
-
-    // hapus setelah animasi selesai
-    setTimeout(() => {
-      ring.remove();
-    }, 1500);
-  };
 
  const [animateRadar, setAnimateRadar] = useState(false);
 
-  const handleSupportClick = () => {
-    // Aktifkan animasi radar
-    setAnimateRadar(true);
-
-    // Matikan animasi setelah 1.5 detik biar bisa di-trigger ulang
-    setTimeout(() => setAnimateRadar(false), 1500);
-  };
 
 const fiturList = [
     {
