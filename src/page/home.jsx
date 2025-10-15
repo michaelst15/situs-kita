@@ -268,8 +268,8 @@ const handleSubmit = (e) => {
             opacity: 0.9,
           }}
         >
-          Kami membantu bisnis dan personal membangun kehadiran online yang cepat,
-          modern, dan menarik perhatian.
+          Kami membantu bisnis dan personal membangun Website yang cepat,
+          modern, dan menarik serta responsive.
         </Typography>
         <Button
           onClick={handleClick}
