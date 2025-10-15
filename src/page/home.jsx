@@ -438,37 +438,73 @@ const handleSubmit = (e) => {
       </CardContent>
 
       {/* Tombol bawah */}
-      {/* <Box sx={{ mb: 2 }}>
-        <Button
-          variant="outlined"
-          onClick={triggerRadar}
-          sx={{
-            minWidth: "42px",
-            height: "42px",
-            borderRadius: "50%",
-            borderColor: "#31927b",
-            backgroundColor: "#fff",
-            color: "#31927b",
-            "&:hover": {
-              backgroundColor: "#f2fdf9",
-              borderColor: "#267f68",
-              color: "#267f68",
-            },
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth="2.2"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </Button>
-      </Box> */}
+      <Box
+  sx={{
+    mb: 2,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 1.5,
+  }}
+>
+  {/* Garis kiri */}
+  <Box
+    component="svg"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 100 2"
+    width="60"
+    height="2"
+    sx={{
+      stroke: "#31927b",
+      fill: "none",
+      strokeWidth: 2,
+    }}
+  >
+    <line x1="0" y1="1" x2="100" y2="1" />
+  </Box>
+
+  {/* Logo di tengah */}
+  <Box
+    component="img"
+    src={logo}
+    alt="Logo"
+    sx={{
+      width: 50,
+      height: 50,
+      borderRadius: "50%",
+      border: "2px solid #31927b",
+      p: 1,
+      backgroundColor: "#fff",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+      "&:hover": {
+        transform: "scale(1.1)",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+      },
+      cursor: "pointer",
+    }}
+    onClick={() => console.log("Logo diklik!")} // bisa diganti triggerRadar()
+  />
+
+  {/* Garis kanan */}
+  <Box
+    component="svg"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 100 2"
+    width="60"
+    height="2"
+    sx={{
+      stroke: "#31927b",
+      fill: "none",
+      strokeWidth: 2,
+    }}
+  >
+    <line x1="0" y1="1" x2="100" y2="1" />
+  </Box>
+</Box>
+
+
+
     </Card>
 
       {/* === WHATSAPP BUTTON DENGAN RADAR === */}
