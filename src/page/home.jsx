@@ -277,7 +277,7 @@ const handleSubmit = (e) => {
             fontSize: { xs: "2rem", md: "3rem" },
           }}
         >
-          Wujudkan Website Profesionalmu Bersama{" "}
+          Wujudkan Website Professionalmu Bersama{" "}
           <span
             style={{
               color: "#fcb81c",
