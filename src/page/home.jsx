@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import logo from '../image/logo.png'
 import {
   Box,
@@ -55,6 +55,33 @@ const [errors, setErrors] = useState({
   hp: "",
   email: ""
 });
+
+const whatsappRef = useRef(null);
+
+const triggerRadar = () => {
+    const btn = whatsappRef.current;
+    if (!btn) return;
+
+    // buat elemen radar
+    const ring = document.createElement("span");
+    ring.classList.add("pulse-ring-once");
+    btn.appendChild(ring);
+
+    // hapus setelah animasi selesai
+    setTimeout(() => {
+      ring.remove();
+    }, 1500);
+  };
+
+ const [animateRadar, setAnimateRadar] = useState(false);
+
+  const handleSupportClick = () => {
+    // Aktifkan animasi radar
+    setAnimateRadar(true);
+
+    // Matikan animasi setelah 1.5 detik biar bisa di-trigger ulang
+    setTimeout(() => setAnimateRadar(false), 1500);
+  };
 
 const fiturList = [
     {
@@ -366,70 +393,145 @@ const handleSubmit = (e) => {
           },
         }}
       >
-        <Card
+      <Card
+      sx={{
+        position: "relative",
+        width: "100%",
+        maxWidth: 300,
+        height: 380,
+        borderRadius: "12px",
+        overflow: "hidden",
+        textAlign: "center",
+        boxShadow: "0 3px 10px rgba(0,0,0,0.1)",
+        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+        "&:hover": {
+          transform: "translateY(-4px)",
+          boxShadow: "0 5px 15px rgba(0,0,0,0.15)",
+        },
+        background: "white",
+        color: "#333",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
+      {/* Gambar */}
+      <Box
+        component="img"
+        src={item.img}
+        alt={item.title}
+        sx={{
+          width: "100%",
+          height: "200px",
+          objectFit: "cover",
+          borderRadius: "10px",
+          mb: 2,
+          display: "block",
+          transition: "transform 0.3s ease",
+          "&:hover": { transform: "scale(1.03)" },
+        }}
+      />
+
+      <CardContent sx={{ p: 0, flexGrow: 1 }}>
+        <Typography
+          variant="subtitle1"
           sx={{
-            position: "relative",
-            width: "100%",
-            maxWidth: 300,
-            height: 360, // ✅ tinggi tetap agar gambar bisa proporsional penuh
-            borderRadius: "12px",
-            overflow: "hidden",
-            textAlign: "center",
-            boxShadow: "0 3px 10px rgba(0,0,0,0.1)",
-            transition: "transform 0.3s ease, box-shadow 0.3s ease",
-            "&:hover": {
-              transform: "translateY(-4px)",
-              boxShadow: "0 5px 15px rgba(0,0,0,0.15)",
-            },
-            background: "white",
-            color: "#333",
+            fontWeight: 700,
+            color: "#31927b",
+            mb: 0.5,
+            fontSize: "1rem",
           }}
         >
-          {/* Gambar memenuhi seluruh area bagian atas kartu */}
+          {item.title}
+        </Typography>
+
+        <Typography
+          sx={{
+            color: "gray",
+            opacity: 0.9,
+            fontSize: "0.85rem",
+            lineHeight: 1.4,
+            px: 1.5,
+          }}
+        >
+          {item.desc}
+        </Typography>
+      </CardContent>
+
+      {/* Tombol bawah */}
+      {/* <Box sx={{ mb: 2 }}>
+        <Button
+          variant="outlined"
+          onClick={triggerRadar}
+          sx={{
+            minWidth: "42px",
+            height: "42px",
+            borderRadius: "50%",
+            borderColor: "#31927b",
+            backgroundColor: "#fff",
+            color: "#31927b",
+            "&:hover": {
+              backgroundColor: "#f2fdf9",
+              borderColor: "#267f68",
+              color: "#267f68",
+            },
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2.2"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </Button>
+      </Box> */}
+    </Card>
+
+      {/* === WHATSAPP BUTTON DENGAN RADAR === */}
+      <Box sx={{ position: "relative" }}>
+        {/* Efek radar */}
+        {animateRadar && (
           <Box
-            component="img"
-            src={item.img}
-            alt={item.title}
             sx={{
-              width: "100%",
-              height: "200px", // ✅ tinggi tetap agar semua seragam
-              objectFit: "cover", // isi penuh tanpa distorsi
-              borderRadius: "10px",
-              mb: 2,
-              display: "block",
-              transition: "transform 0.3s ease",
-              "&:hover": {
-                transform: "scale(1.03)",
-              },
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              width: 60,
+              height: 60,
+              borderRadius: "50%",
+              border: "2px solid rgba(37,211,102,0.5)",
+              transform: "translate(-50%, -50%)",
+              animation: "radarPulse 1.2s ease-out infinite",
+              zIndex: 0,
+              pointerEvents: "none",
             }}
           />
+        )}
+      </Box>
 
-          <CardContent sx={{ p: 0 }}>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                fontWeight: 700,
-                color: "#31927b",
-                mb: 0.5,
-                fontSize: "1rem",
-              }}
-            >
-              {item.title}
-            </Typography>
+      {/* Tambahkan animasi keyframes */}
+      <style>{`
+        @keyframes radarPulse {
+          0% {
+            transform: translate(-50%, -50%) scale(0.9);
+            opacity: 0.8;
+          }
+          70% {
+            transform: translate(-50%, -50%) scale(2.2);
+            opacity: 0;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+      `}</style>
 
-            <Typography
-              sx={{
-                color: "gray",
-                opacity: 0.9,
-                fontSize: "0.85rem",
-                lineHeight: 1.4,
-                px: 1.5,
-              }}
-            >
-              {item.desc}
-            </Typography>
-          </CardContent>
-        </Card>
+
       </Grid>
     ))}
   </Grid>
@@ -842,20 +944,35 @@ const handleSubmit = (e) => {
         zIndex: 9999,
       }}
     >
-      <IconButton
-        onClick={handleClick}
+      <Box
         sx={{
-          bgcolor: "#25D366",
-          "&:hover": { bgcolor: "#1ebe5d" },
-          color: "#fff",
+          position: "relative",
           width: 60,
           height: 60,
-          borderRadius: "50%",
-          boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
         }}
       >
-        <WhatsAppIcon sx={{ fontSize: 32 }} />
-      </IconButton>
+        {/* Efek radar */}
+        <span className="pulse-ring"></span>
+
+        <IconButton
+          id="whatsapp-btn"
+          onClick={handleClick}
+          sx={{
+            bgcolor: "#25D366",
+            "&:hover": { bgcolor: "#1ebe5d" },
+            color: "#fff",
+            width: 60,
+            height: 60,
+            borderRadius: "50%",
+            boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+            position: "absolute",
+            top: 0,
+            left: 0,
+          }}
+        >
+          <WhatsAppIcon sx={{ fontSize: 32 }} />
+        </IconButton>
+      </Box>
     </Box>
       </Grid>
 

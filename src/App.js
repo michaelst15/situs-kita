@@ -20,13 +20,11 @@ function App() {
   }, []);
 
   if (isLoading) {
-    // tampilkan halaman loading terlebih dahulu
     return <LoadingPage />;
   }
 
   return (
     <Router>
-      {/* Header tetap tampil di setiap halaman */}
       <Header />
       <div style={{ marginTop: "80px", padding: "20px" }}>
         <Routes>
