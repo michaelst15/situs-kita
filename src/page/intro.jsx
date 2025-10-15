@@ -15,7 +15,7 @@ export default function LoadingPage() {
         justifyContent: 'center',
         backgroundColor: 'transparent',
         flexDirection: 'column',
-        gap: { xs: 2, md: 1.5 }, // jarak antar elemen (lebih rapat di desktop)
+        gap: { xs: 2, md: 1.2 }, // jarak antar elemen
       }}
     >
       {/* Logo di atas animasi */}
@@ -24,8 +24,8 @@ export default function LoadingPage() {
         src={Logo}
         alt="Logo SitusKita"
         sx={{
-          width: { xs: 200, sm: 200, md: 180 },
-          mb: { xs: 1, md: 0.5 }, // lebih dekat di layar besar
+          width: { xs: 180, sm: 190, md: 160, lg: 150 },
+          mb: { xs: 1, md: 0.5 },
           userSelect: 'none',
           transition: 'all 0.3s ease-in-out',
         }}
@@ -46,9 +46,9 @@ export default function LoadingPage() {
       >
         <Box
           sx={{
-            width: { xs: 240, sm: 320, md: 360 },
-            filter: 'invert(41%) sepia(17%) saturate(992%) hue-rotate(120deg) brightness(94%) contrast(92%)',
-            // filter di atas menghasilkan warna mendekati #31927b
+            width: { xs: 220, sm: 260, md: 220, lg: 200 }, // ✅ lebih kecil di desktop
+            filter:
+              'invert(41%) sepia(17%) saturate(992%) hue-rotate(120deg) brightness(94%) contrast(92%)',
           }}
         >
           <Lottie animationData={loadingAnim} loop autoplay />
