@@ -178,6 +178,7 @@ const [init, setInit] = React.useState(false);
                         height="200"
                         image={item.image}
                         alt={item.title}
+                        loading="lazy"
                         sx={{
                           transition: "0.4s ease",
                         }}

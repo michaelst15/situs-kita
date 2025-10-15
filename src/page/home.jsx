@@ -456,6 +456,7 @@ const handleSubmit = (e) => {
               component="img"
               src={item.img}
               alt={item.title}
+              loading="lazy"
               sx={{
                 width: "100%",
                 height: "200px",
@@ -817,17 +818,22 @@ const handleSubmit = (e) => {
             },
           }}
         >
-          <Avatar
+          <Box
+            component="img"
             src={t.img}
             alt={t.name}
+            loading="lazy"
             sx={{
               width: 80,
               height: 80,
               mx: "auto",
               mb: 2,
               border: "3px solid #31927b",
+              borderRadius: "50%",         // ini membuatnya bulat seperti Avatar
+              objectFit: "cover",          // jaga aspek rasio
             }}
           />
+
           <Typography
             sx={{
               fontStyle: "italic",
