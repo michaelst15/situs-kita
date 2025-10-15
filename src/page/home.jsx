@@ -17,6 +17,7 @@ import {
   CircularProgress,
   IconButton
 } from "@mui/material";
+import { Container } from "@mui/material";
 import UseWhatsapp from "whatsapp-react-component";
 import { CheckCircleOutlineOutlined } from "@mui/icons-material";
 import { CancelOutlined } from "@mui/icons-material";
@@ -32,7 +33,11 @@ import foto1 from "../image/foto1.webp";
 import foto2 from "../image/foto2.jpg";
 import foto3 from "../image/foto3.png";
 import foto4 from "../image/foto4.png";
+import foto5 from '../image/foto5.png';
+import foto6 from '../image/foto6.png';
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadLinksPreset } from "@tsparticles/preset-links";
 import "@fontsource/montserrat";
 import "@fontsource/niconne"; 
 
@@ -55,6 +60,15 @@ const [errors, setErrors] = useState({
   hp: "",
   email: ""
 });
+
+const [init, setInit] = React.useState(false);
+
+  // Inisialisasi Engine
+  React.useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadLinksPreset(engine);
+    }).then(() => setInit(true));
+  }, []);
 
 const whatsappRef = useRef(null);
 
@@ -82,6 +96,16 @@ const fiturList = [
       title: "Support Penuh",
       desc: "Kami siap membantu dari pembuatan hingga pemeliharaan situs Anda.",
       img: foto4,
+    },
+    {
+      title: "SEO Friendly",
+      desc: "Website dioptimalkan agar mudah ditemukan di mesin pencari seperti Google, membantu meningkatkan visibilitas bisnis Anda.",
+      img: foto5,
+    },
+    {
+      title: "Kustomisasi Fleksibel",
+      desc: "Setiap website disesuaikan dengan kebutuhan dan identitas brand Anda, tidak template umum yang seragam.",
+      img: foto6,
     },
   ];
 
@@ -328,229 +352,191 @@ const handleSubmit = (e) => {
       {/* ===== MENGAPA MEMILIH SITUSKITA ===== */}
 <Box
   sx={{
-    bgcolor: "#f7f7f7",
+    position: "relative",
     py: 10,
     px: { xs: 3, md: 10 },
     textAlign: "center",
+    overflow: "hidden",
+    backgroundColor: "#ffffff",
+    minHeight: "600px", // ⬅️ pakai minHeight biar tidak motong konten di mobile
   }}
 >
-  <Typography variant="h4" sx={{ fontWeight: 700, color: "#31927b" }}>
-    Mengapa Memilih{" "}
-    <span
-      style={{
-        color: "#fcb81c",
-        fontFamily: "'Niconne', cursive",
-        fontSize: "1.4em",
+  {/* === PARTICLES === */}
+  {init && (
+    <Box
+      sx={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        zIndex: 0,
       }}
     >
-      SitusKita
-    </span>
-    ?
-  </Typography>
-
-  <Grid
-    container
-    spacing={3}
-    sx={{
-      mt: 4,
-      justifyContent: "center",
-    }}
-  >
-    {fiturList.map((item, i) => (
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        md={4}
-        key={i}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          mt: {
-            xs: i > 0 ? 2 : 0,
-            md: i >= 3 ? 3 : 0,
+      <Particles
+        id="tsparticles-box"
+        options={{
+          preset: "links",
+          fullScreen: { enable: false },
+          background: { color: "#ffffff" },
+          particles: {
+            color: { value: "#31927b" },
+            links: { color: "#31927b", distance: 150, enable: true, opacity: 0.4, width: 1 },
+            move: { enable: true, speed: 2 },
+            number: { value: 60, density: { enable: true, area: 800 } },
           },
         }}
-      >
-      <Card
-      sx={{
-        position: "relative",
-        width: "100%",
-        maxWidth: 300,
-        height: 380,
-        borderRadius: "12px",
-        overflow: "hidden",
-        textAlign: "center",
-        boxShadow: "0 3px 10px rgba(0,0,0,0.1)",
-        transition: "transform 0.3s ease, box-shadow 0.3s ease",
-        "&:hover": {
-          transform: "translateY(-4px)",
-          boxShadow: "0 5px 15px rgba(0,0,0,0.15)",
-        },
-        background: "white",
-        color: "#333",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-      }}
-    >
-      {/* Gambar */}
-      <Box
-        component="img"
-        src={item.img}
-        alt={item.title}
-        sx={{
+        style={{
           width: "100%",
-          height: "200px",
-          objectFit: "cover",
-          borderRadius: "10px",
-          mb: 2,
-          display: "block",
-          transition: "transform 0.3s ease",
-          "&:hover": { transform: "scale(1.03)" },
+          height: "100%",
         }}
       />
+    </Box>
+  )}
 
-      <CardContent sx={{ p: 0, flexGrow: 1 }}>
-        <Typography
-          variant="subtitle1"
+  {/* === KONTEN === */}
+  <Container sx={{ position: "relative", zIndex: 1 }}>
+    <Typography variant="h4" sx={{ fontWeight: 700, color: "#31927b" }}>
+      Mengapa Memilih{" "}
+      <span
+        style={{
+          color: "#fcb81c",
+          fontFamily: "'Niconne', cursive",
+          fontSize: "1.4em",
+        }}
+      >
+        SitusKita
+      </span>
+      ?
+    </Typography>
+
+    {/* Grid Responsive */}
+    <Grid
+      container
+      spacing={3}
+      sx={{
+        mt: 4,
+      }}
+    >
+      {fiturList.map((item, i) => (
+        <Grid
+          item
+          xs={12}     // 1 kolom di mobile
+          sm={6}      // 2 kolom di tablet
+          md={4}      // 3 kolom di desktop
+          key={i}
           sx={{
-            fontWeight: 700,
-            color: "#31927b",
-            mb: 0.5,
-            fontSize: "1rem",
+            display: "flex",
+            justifyContent: "center",
           }}
         >
-          {item.title}
-        </Typography>
-
-        <Typography
-          sx={{
-            color: "gray",
-            opacity: 0.9,
-            fontSize: "0.85rem",
-            lineHeight: 1.4,
-            px: 1.5,
-          }}
-        >
-          {item.desc}
-        </Typography>
-      </CardContent>
-
-      {/* Tombol bawah */}
-      <Box
-  sx={{
-    mb: 2,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 1.5,
-  }}
->
-  {/* Garis kiri */}
-  <Box
-    component="svg"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 100 2"
-    width="60"
-    height="2"
-    sx={{
-      stroke: "#31927b",
-      fill: "none",
-      strokeWidth: 2,
-    }}
-  >
-    <line x1="0" y1="1" x2="100" y2="1" />
-  </Box>
-
-  {/* Logo di tengah */}
-  <Box
-    component="img"
-    src={logo}
-    alt="Logo"
-    sx={{
-      width: 50,
-      height: 50,
-      borderRadius: "50%",
-      border: "2px solid #31927b",
-      p: 1,
-      backgroundColor: "#fff",
-      boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-      transition: "transform 0.3s ease, box-shadow 0.3s ease",
-      "&:hover": {
-        transform: "scale(1.1)",
-        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-      },
-      cursor: "pointer",
-    }}
-    onClick={() => console.log("Logo diklik!")} // bisa diganti triggerRadar()
-  />
-
-  {/* Garis kanan */}
-  <Box
-    component="svg"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 100 2"
-    width="60"
-    height="2"
-    sx={{
-      stroke: "#31927b",
-      fill: "none",
-      strokeWidth: 2,
-    }}
-  >
-    <line x1="0" y1="1" x2="100" y2="1" />
-  </Box>
-</Box>
-
-
-
-    </Card>
-
-      {/* === WHATSAPP BUTTON DENGAN RADAR === */}
-      <Box sx={{ position: "relative" }}>
-        {/* Efek radar */}
-        {animateRadar && (
-          <Box
+          <Card
             sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              width: 60,
-              height: 60,
-              borderRadius: "50%",
-              border: "2px solid rgba(37,211,102,0.5)",
-              transform: "translate(-50%, -50%)",
-              animation: "radarPulse 1.2s ease-out infinite",
-              zIndex: 0,
-              pointerEvents: "none",
+              width: "100%",
+              maxWidth: 300,
+              height: 380,
+              borderRadius: "12px",
+              overflow: "hidden",
+              textAlign: "center",
+              boxShadow: "0 3px 10px rgba(0,0,0,0.1)",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              "&:hover": {
+                transform: "translateY(-4px)",
+                boxShadow: "0 5px 15px rgba(0,0,0,0.15)",
+              },
+              background: "white",
+              color: "#333",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
             }}
-          />
-        )}
-      </Box>
+          >
+            {/* Gambar */}
+            <Box
+              component="img"
+              src={item.img}
+              alt={item.title}
+              sx={{
+                width: "100%",
+                height: "200px",
+                objectFit: "cover",
+                borderRadius: "10px",
+                mb: 2,
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.03)" },
+              }}
+            />
 
-      {/* Tambahkan animasi keyframes */}
-      <style>{`
-        @keyframes radarPulse {
-          0% {
-            transform: translate(-50%, -50%) scale(0.9);
-            opacity: 0.8;
-          }
-          70% {
-            transform: translate(-50%, -50%) scale(2.2);
-            opacity: 0;
-          }
-          100% {
-            opacity: 0;
-          }
-        }
-      `}</style>
+            <CardContent sx={{ p: 0, flexGrow: 1 }}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  fontWeight: 700,
+                  color: "#31927b",
+                  mb: 0.5,
+                  fontSize: "1rem",
+                }}
+              >
+                {item.title}
+              </Typography>
+              <Typography
+                sx={{
+                  color: "gray",
+                  opacity: 0.9,
+                  fontSize: "0.85rem",
+                  lineHeight: 1.4,
+                  px: 1.5,
+                }}
+              >
+                {item.desc}
+              </Typography>
+            </CardContent>
 
+            {/* Garis kiri, logo, garis kanan */}
+            <Box
+              sx={{
+                mb: 2,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 1.5,
+              }}
+            >
+              <Box component="svg" viewBox="0 0 100 2" width="60" height="2" sx={{ stroke: "#31927b", fill: "none", strokeWidth: 2 }}>
+                <line x1="0" y1="1" x2="100" y2="1" />
+              </Box>
 
-      </Grid>
-    ))}
-  </Grid>
+              <Box
+                component="img"
+                src={logo}
+                alt="Logo"
+                sx={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: "50%",
+                  border: "2px solid #31927b",
+                  p: 1,
+                  backgroundColor: "#fff",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  "&:hover": { transform: "scale(1.1)", boxShadow: "0 4px 12px rgba(0,0,0,0.2)" },
+                  cursor: "pointer",
+                }}
+                onClick={() => console.log("Logo diklik!")}
+              />
+
+              <Box component="svg" viewBox="0 0 100 2" width="60" height="2" sx={{ stroke: "#31927b", fill: "none", strokeWidth: 2 }}>
+                <line x1="0" y1="1" x2="100" y2="1" />
+              </Box>
+            </Box>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
+  </Container>
 </Box>
+
+
 
 
       {/* ===== PAKET WEBSITE ===== */}

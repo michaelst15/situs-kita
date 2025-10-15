@@ -10,6 +10,8 @@ import {
   IconButton,
   Rating,
 } from "@mui/material";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadLinksPreset } from "@tsparticles/preset-links";
 import { handleClick } from "./home";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import logo from "../image/logo.png";
@@ -72,12 +74,45 @@ const portofolioCategories = [
 
 // ========================= KOMPONEN UTAMA =========================
 export default function Portofolio() {
+
+const [init, setInit] = React.useState(false);
+
+  // Inisialisasi Engine
+  React.useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadLinksPreset(engine);
+    }).then(() => setInit(true));
+  }, []);
   
   return (
     <>
-    <Box id="Website situskita" sx={{ bgcolor: "#f9fafb", mt: -10 }}>
-      <Container>
-        {/* Judul Halaman Utama */}
+<Box sx={{ position: "relative", overflow: "hidden", bgcolor: "#f9fafb", mt: -10 }}>
+      {init && (
+        <Particles
+          id="tsparticles"
+          options={{
+            preset: "links",
+            background: { color: "#ffffff" },
+            particles: {
+              color: { value: "#31927b" },
+              links: { color: "#31927b", distance: 150, enable: true, opacity: 0.4, width: 1 },
+              move: { enable: true, speed: 2 },
+              number: { value: 60, density: { enable: true, area: 800 } },
+            },
+          }}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 0,
+          }}
+        />
+      )}
+
+      {/* ===== Konten Utama ===== */}
+      <Container sx={{ position: "relative", zIndex: 1 }}>
         <Box sx={{ py: 10, textAlign: "center" }}>
           <Typography variant="h4" sx={{ fontWeight: 700, color: "#31927b" }}>
             Website{" "}
@@ -93,10 +128,9 @@ export default function Portofolio() {
           </Typography>
         </Box>
 
-        {/* Loop Setiap Kategori */}
+        {/* Loop kategori */}
         {portofolioCategories.map((section, i) => (
           <Box key={i} sx={{ mb: 10 }}>
-            {/* Judul Kategori */}
             <Typography
               variant="h5"
               align="center"
@@ -110,7 +144,6 @@ export default function Portofolio() {
               {section.category}
             </Typography>
 
-            {/* Grid Portofolio */}
             <Grid container spacing={4}>
               {section.data.map((item, index) => (
                 <Grid item xs={12} sm={6} md={4} lg={4} key={index}>
@@ -127,7 +160,6 @@ export default function Portofolio() {
                       },
                     }}
                   >
-                    {/* Efek Hover Gambar */}
                     <Box
                       sx={{
                         position: "relative",
@@ -150,8 +182,6 @@ export default function Portofolio() {
                           transition: "0.4s ease",
                         }}
                       />
-
-                      {/* Overlay Tulisan Lihat */}
                       <Box
                         className="overlay"
                         sx={{
@@ -190,21 +220,16 @@ export default function Portofolio() {
                       </Box>
                     </Box>
 
-                    {/* Konten Kartu */}
                     <CardContent>
                       <Typography
                         variant="subtitle1"
                         align="center"
                         fontWeight={700}
-                        sx={{
-                          mb: 1,
-                          color: "#31927b",
-                        }}
+                        sx={{ mb: 1, color: "#31927b" }}
                       >
                         {item.title}
                       </Typography>
 
-                      {/* Baris: Top Desain + Rating */}
                       <Box
                         sx={{
                           display: "flex",
@@ -212,19 +237,10 @@ export default function Portofolio() {
                           justifyContent: "space-between",
                         }}
                       >
-                        <Typography
-                          variant="body2"
-                          sx={{ color: "#555", fontWeight: 600 }}
-                        >
+                        <Typography variant="body2" sx={{ color: "#555", fontWeight: 600 }}>
                           Top Desain
                         </Typography>
-                        <Rating
-                          name="read-only"
-                          value={5}
-                          readOnly
-                          size="small"
-                          sx={{ color: "#fcb81c" }}
-                        />
+                        <Rating name="read-only" value={5} readOnly size="small" sx={{ color: "#fcb81c" }} />
                       </Box>
                     </CardContent>
                   </Card>
@@ -234,8 +250,9 @@ export default function Portofolio() {
           </Box>
         ))}
       </Container>
-    </Box>
-     {/* ===== FOOTER ===== */}
+
+      {/* ===== FOOTER ===== */}
+      <Container sx={{ position: "relative", zIndex: 1 }}>
       <Box
       component="footer"
       sx={{
@@ -372,6 +389,10 @@ export default function Portofolio() {
         </Typography>
       </Box>
     </Box>
+    </Container>
+    </Box>
+
+     
     </>
   );
 }
