@@ -7,6 +7,38 @@
   pointer-events: none;
 }
 
+#whatsapp-btn {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 999999999 !important;
+  pointer-events: auto !important;
+}
+
+.pulse-ring {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #25D366;
+  border-radius: 50%;
+  animation: pulse 1.6s infinite;
+  top: 0;
+  left: 0;
+  z-index: 999999998;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+
 @font-face {
   font-family: 'Quicksand';
   src: url('./font/static/Quicksand-Medium.ttf') format('truetype');

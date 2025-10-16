@@ -232,26 +232,28 @@ export default function Header() {
             />
 
             <Typography
-              variant={isMobile ? "subtitle2" : "h6"}
-              sx={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 700,
-                display: "flex",
-                alignItems: "center",
-                whiteSpace: "nowrap",
-                fontSize: isMobile ? "1rem" : "1.4rem",
-                letterSpacing: "0.5px",
-                transition: "opacity 0.5s ease",
-                opacity: fade ? 1 : 0,
-              }}
-            >
-              <span style={{ color: "#31927b" }}>
-                {taglineWords[currentWordIndex].charAt(0)}
-              </span>
-              <span style={{ color: "#fcb81c" }}>
-                {taglineWords[currentWordIndex].slice(1)}
-              </span>
-            </Typography>
+            variant={isMobile ? "subtitle2" : "h6"}
+            sx={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 700,
+              display: "flex",
+              alignItems: "center",
+              whiteSpace: "nowrap",
+              fontSize: isMobile ? "1rem" : "1.4rem",
+              letterSpacing: "0.5px",
+              transition: "opacity 0.5s ease",
+              opacity: fade ? 1 : 0,
+            }}
+          >
+            {taglineWords[currentWordIndex].split(" ").map((word, index) => (
+              <React.Fragment key={index}>
+                <span style={{ color: "#31927b" }}>{word.charAt(0)}</span>
+                <span style={{ color: "#fcb81c" }}>{word.slice(1)}</span>
+                &nbsp;
+              </React.Fragment>
+            ))}
+          </Typography>
+
           </Box>
 
           {/* === Menu Desktop === */}
