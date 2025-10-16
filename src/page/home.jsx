@@ -257,6 +257,7 @@ const handleSubmit = (e) => {
 
 
   return (
+    <>
     <Box sx={{ fontFamily: "'Montserrat', sans-serif" }}>
       {/* ===== HERO SECTION ===== */}
       <Box
@@ -946,45 +947,6 @@ const handleSubmit = (e) => {
             digital Anda.
           </Typography>
         </Grid>
-
-        <Box
-      sx={{
-        position: "fixed",
-        bottom: 20,
-        right: 20,
-        zIndex: 9999,
-      }}
-    >
-      <Box
-        sx={{
-          position: "relative",
-          width: 60,
-          height: 60,
-        }}
-      >
-        {/* Efek radar */}
-        <span className="pulse-ring"></span>
-
-        <IconButton
-          id="whatsapp-btn"
-          onClick={handleClick}
-          sx={{
-            bgcolor: "#25D366",
-            "&:hover": { bgcolor: "#1ebe5d" },
-            color: "#fff",
-            width: 60,
-            height: 60,
-            borderRadius: "50%",
-            boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
-        >
-          <WhatsAppIcon sx={{ fontSize: 32 }} />
-        </IconButton>
-      </Box>
-    </Box>
       </Grid>
 
       {/* Garis Pembatas */}
@@ -1006,5 +968,34 @@ const handleSubmit = (e) => {
       </Box>
     </Box>
     </Box>
+
+    <Box
+      id="whatsapp-btn"
+      sx={{
+        position: "fixed",
+        bottom: { xs: 16, md: 20 },
+        right: { xs: 16, md: 20 },
+        zIndex: 2147483647, // nilai maksimum
+        pointerEvents: "auto",
+      }}
+    >
+      <span className="pulse-ring"></span>
+      <IconButton
+        onClick={handleClick}
+        sx={{
+          bgcolor: "#25D366",
+          "&:hover": { bgcolor: "#1ebe5d" },
+          color: "#fff",
+          width: { xs: 52, md: 60 },
+          height: { xs: 52, md: 60 },
+          borderRadius: "50%",
+          boxShadow: "0 6px 12px rgba(0,0,0,0.3)",
+          zIndex: 2147483647,
+        }}
+      >
+        <WhatsAppIcon sx={{ fontSize: { xs: 28, md: 32 } }} />
+      </IconButton>
+    </Box>
+    </>
   );
 }
