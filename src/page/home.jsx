@@ -289,13 +289,14 @@ const handleSubmit = (e) => {
           </span>
         </Typography>
         <Typography
-          variant="h6"
+          className="font"
           sx={{
             maxWidth: "700px",
             mx: "auto",
             mb: 4,
             color: "#fff",
             opacity: 0.9,
+            fontSize: 20
           }}
         >
           Kami membantu bisnis dan personal membangun Website yang cepat,
@@ -334,6 +335,7 @@ const handleSubmit = (e) => {
           ?
         </Typography>
         <Typography
+          className="font"
           sx={{
             mt: 3,
             maxWidth: 800,
@@ -481,6 +483,7 @@ const handleSubmit = (e) => {
                 {item.title}
               </Typography>
               <Typography
+              className="font"
                 sx={{
                   color: "gray",
                   opacity: 0.9,
@@ -669,7 +672,7 @@ const handleSubmit = (e) => {
                     "&:hover": { bgcolor: "#267864" },
                   }}
                 >
-                  Pilih Paket
+                  <span className="font">Pilih Paket</span>
                 </Button>
               </CardContent>
             </Card>
@@ -885,13 +888,13 @@ const handleSubmit = (e) => {
             alt="SitusKita Logo"
             sx={{ height: 100, mb: 2 }}
           />
-          <Typography sx={{ mb: 2 }}>
+          <Typography className="font" sx={{ mb: 2 }}>
             <b style={{ color: "#31927b" }}>SitusKita</b> adalah penyedia jasa
             pembuatan website profesional yang membantu Anda membangun identitas
             digital yang kuat. Kami percaya bahwa setiap bisnis berhak tampil
             modern dan mudah ditemukan di internet.
           </Typography>
-          <Typography sx={{ mb: 2 }}>
+          <Typography className="font" sx={{ mb: 2 }}>
             Dengan kombinasi desain kreatif, performa cepat, dan strategi digital
             yang efektif, kami hadir untuk membantu bisnis Anda berkembang melalui
             website yang menarik, responsif, dan terpercaya.
@@ -909,6 +912,7 @@ const handleSubmit = (e) => {
           {["Beranda", "Layanan", "Paket Website", "Portofolio", "Testimoni", "Kontak"].map(
             (item, i) => (
               <Typography
+                className="font"
                 key={i}
                 sx={{
                   mb: 1,
@@ -931,12 +935,12 @@ const handleSubmit = (e) => {
           >
             Hubungi Kami
           </Typography>
-          <Typography sx={{ mb: 1 }}>
+          <Typography className="font" sx={{ mb: 1 }}>
             📍 Jln Madrasah No. 91, RT.3/RW.9, Pekayon, Pasar Rebo, Jakarta timur 13710
           </Typography>
-          <Typography sx={{ mb: 1 }}>📞 +62 812 3456 7890</Typography>
-          <Typography sx={{ mb: 2 }}>✉️ situskita@gmail.com</Typography>
-          <Typography sx={{ color: "#555" }}>
+          <Typography className="font" sx={{ mb: 1 }}>📞 +62 812 3456 7890</Typography>
+          <Typography className="font" sx={{ mb: 2 }}>✉️ situskita@gmail.com</Typography>
+          <Typography className="font" sx={{ color: "#555" }}>
             Kami selalu siap membantu Anda membangun website impian. Hubungi kami
             untuk konsultasi gratis dan dapatkan solusi terbaik untuk kebutuhan
             digital Anda.
@@ -993,7 +997,7 @@ const handleSubmit = (e) => {
           textAlign: "center",
         }}
       >
-        <Typography sx={{ fontSize: "0.9rem", color: "#666" }}>
+        <Typography className="font" sx={{ fontSize: "0.9rem", color: "#666" }}>
           © {new Date().getFullYear()}{" "}
           <b style={{ color: "#31927b" }}>SitusKita</b> — Semua hak cipta
           dilindungi. Dibuat dengan semangat dan inovasi 💡 untuk membantu Anda

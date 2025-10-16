@@ -7,6 +7,19 @@
   pointer-events: none;
 }
 
+@font-face {
+  font-family: 'Quicksand';
+  src: url('./font/static/Quicksand-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+}
+
 .pulse-ring {
   position: absolute;
   top: 0;

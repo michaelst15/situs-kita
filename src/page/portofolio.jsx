@@ -49,7 +49,7 @@ const portofolioCategories = [
     ],
   },
   {
-    category: "Toko Online",
+    category: "Online Store",
     data: [
       { title: "Shoes Sale", image: Olshop1, link: "https://themewagon.github.io/footwear/" },
       { title: "Fashion Store E-commerce", image: Olshop2, link: "https://themewagon.github.io/ashion/" },
@@ -129,127 +129,206 @@ const [init, setInit] = React.useState(false);
         </Box>
 
         {/* Loop kategori */}
-        {portofolioCategories.map((section, i) => (
-          <Box key={i} sx={{ mb: 10 }}>
-            <Typography
-              variant="h5"
-              align="center"
-              sx={{
-                fontWeight: 700,
-                mb: 4,
-                color: "#31927b",
-                textTransform: "uppercase",
+{portofolioCategories.map((section, i) => (
+  <Box key={i} sx={{ mb: 10 }}>
+    {/* Kontainer flex kiri-kanan */}
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        gap: 2, // jarak antar kotak
+        mb: 4,
+        flexWrap: { xs: "wrap", md: "nowrap" }, // mobile turun ke bawah
+      }}
+    >
+      {/* Kotak kategori miring di kiri */}
+      <Box
+        sx={{
+          display: "inline-block",
+          backgroundColor: "#31927b",
+          color: "#fff",
+          px: 5,
+          py: 2,
+          transform: "skew(-20deg)",
+          borderRadius: "6px",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+        }}
+      >
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: 1,
+            transform: "skew(0deg)",
+            display: "inline-block",
+          }}
+        >
+          {section.category}
+        </Typography>
+      </Box>
+
+      {/* Kotak tambahan tepat di samping kotak kiri */}
+    <Box
+      sx={{
+        flexGrow: 0,
+        mt: { xs: 2, md: 0 },
+        transform: "skew(-20deg)", // miring ke kanan
+        display: "inline-flex",
+        flexWrap: "wrap", // biarkan turun baris
+        maxWidth: { xs: "100%", sm: "80%", md: "auto" },
+        overflowWrap: "break-word",
+        wordBreak: "break-word",
+      }}
+    >
+      <Typography 
+        className="font"
+        variant="h6"
+        sx={{
+          fontWeight: 600,
+          lineHeight: 1.4,
+          color: "silver",
+          transform: "skew(20deg)", // teks dikoreksi supaya tidak ikut miring
+          textAlign: { xs: "left", sm: "left", md: "left" },
+          width: "fit-content", // jangan penuhi lebar kontainer
+          maxWidth: { xs: "90vw", sm: "80vw", md: "auto" }, // batasi di mobile
+          whiteSpace: "normal",
+        }}
+      >
+        {(() => {
+          let text = "";
+          if (section.category === "Company Profile")
+            text = "Membangun website perusahaan profesional";
+          else if (section.category === "Online Store")
+            text = "Membangun toko online modern";
+          else if (section.category === "Landing Page")
+            text = "Membangun landing page efektif";
+
+          return text.split(" ").map((word, i) => (
+            <span
+              key={i}
+              style={{
+                marginRight: "6px",
+                color: "silver",
+                display: "inline-block",
+                whiteSpace: "pre-wrap",
               }}
             >
-              {section.category}
-            </Typography>
+              {word}
+            </span>
+          ));
+        })()}
+      </Typography>
+    </Box>
 
-            <Grid container spacing={4}>
-              {section.data.map((item, index) => (
-                <Grid item xs={12} sm={6} md={4} lg={4} key={index}>
-                  <Card
-                    sx={{
-                      position: "relative",
-                      overflow: "hidden",
-                      borderRadius: "12px",
-                      boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-                      transition: "transform 0.3s, box-shadow 0.3s",
-                      "&:hover": {
-                        transform: "translateY(-6px)",
-                        boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
-                      },
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        position: "relative",
-                        overflow: "hidden",
-                        "&:hover img": {
-                          filter: "blur(3px) brightness(0.8)",
-                          transform: "scale(1.05)",
-                        },
-                        "&:hover .overlay": {
-                          opacity: 1,
-                        },
-                      }}
-                    >
-                      <CardMedia
-                        component="img"
-                        height="200"
-                        image={item.image}
-                        alt={item.title}
-                        loading="lazy"
-                        sx={{
-                          transition: "0.4s ease",
-                        }}
-                      />
-                      <Box
-                        className="overlay"
-                        sx={{
-                          position: "absolute",
-                          top: 0,
-                          left: 0,
-                          width: "100%",
-                          height: "100%",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          opacity: 0,
-                          transition: "opacity 0.4s ease",
-                          background: "rgba(0, 0, 0, 0.4)",
-                        }}
-                      >
-                        <Typography
-                          component="a"
-                          href={item.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          sx={{
-                            color: "#fff",
-                            fontWeight: 700,
-                            fontSize: "1.1rem",
-                            textDecoration: "none",
-                            backgroundColor: "#31927b",
-                            px: 3,
-                            py: 1,
-                            borderRadius: "8px",
-                            "&:hover": { backgroundColor: "#267360" },
-                          }}
-                        >
-                          Lihat
-                        </Typography>
-                      </Box>
-                    </Box>
 
-                    <CardContent>
-                      <Typography
-                        variant="subtitle1"
-                        align="center"
-                        fontWeight={700}
-                        sx={{ mb: 1, color: "#31927b" }}
-                      >
-                        {item.title}
-                      </Typography>
+    </Box>
 
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <Typography variant="body2" sx={{ color: "#555", fontWeight: 600 }}>
-                          Top Desain
-                        </Typography>
-                        <Rating name="read-only" value={5} readOnly size="small" sx={{ color: "#fcb81c" }} />
-                      </Box>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-        ))}
+    {/* Isi portofolio */}
+    <Grid container spacing={4}>
+      {section.data.map((item, index) => (
+        <Grid item xs={12} sm={6} md={4} lg={4} key={index}>
+          <Card
+            sx={{
+              position: "relative",
+              overflow: "hidden",
+              borderRadius: "12px",
+              boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
+              transition: "transform 0.3s, box-shadow 0.3s",
+              "&:hover": {
+                transform: "translateY(-6px)",
+                boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
+              },
+            }}
+          >
+            <Box
+              sx={{
+                position: "relative",
+                overflow: "hidden",
+                "&:hover img": {
+                  filter: "blur(3px) brightness(0.8)",
+                  transform: "scale(1.05)",
+                },
+                "&:hover .overlay": {
+                  opacity: 1,
+                },
+              }}
+            >
+              <CardMedia
+                component="img"
+                height="200"
+                image={item.image}
+                alt={item.title}
+                loading="lazy"
+                sx={{ transition: "0.4s ease" }}
+              />
+              <Box
+                className="overlay"
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  opacity: 0,
+                  transition: "opacity 0.4s ease",
+                  background: "rgba(0, 0, 0, 0.4)",
+                }}
+              >
+                <Typography
+                  component="a"
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    color: "#fff",
+                    fontWeight: 700,
+                    fontSize: "1.1rem",
+                    textDecoration: "none",
+                    backgroundColor: "#31927b",
+                    px: 3,
+                    py: 1,
+                    borderRadius: "8px",
+                    "&:hover": { backgroundColor: "#267360" },
+                  }}
+                >
+                  Lihat
+                </Typography>
+              </Box>
+            </Box>
+
+            <CardContent>
+              <Typography
+                variant="subtitle1"
+                align="center"
+                fontWeight={700}
+                sx={{ mb: 1, color: "#31927b" }}
+              >
+                {item.title}
+              </Typography>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography variant="body2" sx={{ color: "#555", fontWeight: 600 }}>
+                  Top Desain
+                </Typography>
+                <Rating name="read-only" value={5} readOnly size="small" sx={{ color: "#fcb81c" }} />
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
+  </Box>
+))}
       </Container>
 
       {/* ===== FOOTER ===== */}
@@ -274,13 +353,13 @@ const [init, setInit] = React.useState(false);
             alt="SitusKita Logo"
             sx={{ height: 100, mb: 2 }}
           />
-          <Typography sx={{ mb: 2 }}>
+          <Typography className="font" sx={{ mb: 2 }}>
             <b style={{ color: "#31927b" }}>SitusKita</b> adalah penyedia jasa
             pembuatan website profesional yang membantu Anda membangun identitas
             digital yang kuat. Kami percaya bahwa setiap bisnis berhak tampil
             modern dan mudah ditemukan di internet.
           </Typography>
-          <Typography sx={{ mb: 2 }}>
+          <Typography className="font" sx={{ mb: 2 }}>
             Dengan kombinasi desain kreatif, performa cepat, dan strategi digital
             yang efektif, kami hadir untuk membantu bisnis Anda berkembang melalui
             website yang menarik, responsif, dan terpercaya.
@@ -298,6 +377,7 @@ const [init, setInit] = React.useState(false);
           {["Beranda", "Layanan", "Paket Website", "Portofolio", "Testimoni", "Kontak"].map(
             (item, i) => (
               <Typography
+                className="font"
                 key={i}
                 sx={{
                   mb: 1,
@@ -320,12 +400,12 @@ const [init, setInit] = React.useState(false);
           >
             Hubungi Kami
           </Typography>
-          <Typography sx={{ mb: 1 }}>
+          <Typography className="font" sx={{ mb: 1 }}>
             📍 Jln Madrasah No. 91, RT.3/RW.9, Pekayon, Pasar Rebo, Jakarta timur 13710
           </Typography>
-          <Typography sx={{ mb: 1 }}>📞 +62 812 3456 7890</Typography>
-          <Typography sx={{ mb: 2 }}>✉️ situskita@gmail.com</Typography>
-          <Typography sx={{ color: "#555" }}>
+          <Typography className="font" sx={{ mb: 1 }}>📞 +62 812 3456 7890</Typography>
+          <Typography className="font" sx={{ mb: 2 }}>✉️ situskita@gmail.com</Typography>
+          <Typography className="font" sx={{ color: "#555" }}>
             Kami selalu siap membantu Anda membangun website impian. Hubungi kami
             untuk konsultasi gratis dan dapatkan solusi terbaik untuk kebutuhan
             digital Anda.
@@ -382,7 +462,7 @@ const [init, setInit] = React.useState(false);
           textAlign: "center",
         }}
       >
-        <Typography sx={{ fontSize: "0.9rem", color: "#666" }}>
+        <Typography className="font" sx={{ fontSize: "0.9rem", color: "#666" }}>
           © {new Date().getFullYear()}{" "}
           <b style={{ color: "#31927b" }}>SitusKita</b> — Semua hak cipta
           dilindungi. Dibuat dengan semangat dan inovasi 💡 untuk membantu Anda

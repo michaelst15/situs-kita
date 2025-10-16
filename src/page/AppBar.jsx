@@ -40,7 +40,7 @@ export default function Header() {
   const navItems = ["Layanan", "Website SitusKita", "Harga", "Testimoni"];
   const layananItems = [
     "Website Company Profile",
-    "Website Toko Online",
+    "Website Online Store",
     "Website Landing Page",
   ];
 
