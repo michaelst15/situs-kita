@@ -17,6 +17,7 @@
     "@tsparticles/preset-links": "^3.2.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
+    "@vercel/speed-insights": "^1.2.0",
     "assert": "^2.1.0",
     "emailjs-com": "^3.2.0",
     "lottie-react": "^2.4.1",
