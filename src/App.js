@@ -6,7 +6,7 @@ import Home from "./page/home";
 import LoadingPage from "./page/intro";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles"; // ✅ tambahkan ini
-import { injectSpeedInsights } from '@vercel/speed-insights';
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import "./App.css";
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
           </Routes>
         </div>
       </Router>
-      <injectSpeedInsights />
+      <SpeedInsights />
     </ThemeProvider>
   );
 }
