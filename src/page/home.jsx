@@ -361,7 +361,10 @@ const handleSubmit = (e) => {
     textAlign: "center",
     overflow: "hidden",
     backgroundColor: "#ffffff",
-    minHeight: "600px", // ⬅️ pakai minHeight biar tidak motong konten di mobile
+    minHeight: "100vh", // agar tinggi penuh layar
+    display: "flex",
+    justifyContent: "center", // pusatkan horizontal
+    alignItems: "center",     // pusatkan vertikal
   }}
 >
   {/* === PARTICLES === */}
@@ -398,7 +401,18 @@ const handleSubmit = (e) => {
   )}
 
   {/* === KONTEN === */}
-  <Container sx={{ position: "relative", zIndex: 1 }}>
+  <Container
+    sx={{
+      position: "relative",
+      zIndex: 1,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      textAlign: "center",
+      width: "100%",
+    }}
+  >
     <Typography variant="h4" sx={{ fontWeight: 700, color: "#31927b" }}>
       Mengapa Memilih{" "}
       <span
@@ -419,14 +433,15 @@ const handleSubmit = (e) => {
       spacing={3}
       sx={{
         mt: 4,
+        justifyContent: "center",
       }}
     >
       {fiturList.map((item, i) => (
         <Grid
           item
-          xs={12}     // 1 kolom di mobile
-          sm={6}      // 2 kolom di tablet
-          md={4}      // 3 kolom di desktop
+          xs={12}
+          sm={6}
+          md={4}
           key={i}
           sx={{
             display: "flex",
@@ -484,7 +499,7 @@ const handleSubmit = (e) => {
                 {item.title}
               </Typography>
               <Typography
-              className="font"
+                className="font"
                 sx={{
                   color: "gray",
                   opacity: 0.9,
@@ -524,7 +539,10 @@ const handleSubmit = (e) => {
                   backgroundColor: "#fff",
                   boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                   transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  "&:hover": { transform: "scale(1.1)", boxShadow: "0 4px 12px rgba(0,0,0,0.2)" },
+                  "&:hover": {
+                    transform: "scale(1.1)",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+                  },
                   cursor: "pointer",
                 }}
                 onClick={() => console.log("Logo diklik!")}
@@ -540,6 +558,7 @@ const handleSubmit = (e) => {
     </Grid>
   </Container>
 </Box>
+
 
 
 
